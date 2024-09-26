@@ -92,20 +92,21 @@ bot.start((ctx) => {
 
     notifyGroup(ctx.from);
 
-    ctx.reply(`${userName}, Welcome aboard to TeraShareLinks Bot! 😊
+    ctx.reply(`${userName}, Welcome to TeraShareLinks Bot! 😊
 
-I’m here to help you easily convert and make money from your links. Let’s get started with a few simple steps:
+Easily convert links and start earning! 💸 Follow these simple steps:
 
-Step 1: Go to your TeraShareLinks API page: 👉 https://terasharelinks.xyz/member/tools/api 🔑
-Step 2: Copy your API key. 🗝️
-Step 3: Come back here and send the command 👉 /api 👈 followed by your key. 🔌
+1️⃣ Go to your API page: 👉 https://terasharelinks.xyz/member/tools/api
+2️⃣ Copy your API key. 🗝️
+3️⃣ Send the command: /api
+4️⃣ Paste your API key. 🔑
 
-How to use the bot: 🎦 @Bot_Use_Tutorial
-Help and support 📨 @TeraShareLinks_support
+📽️ How to use: @Bot_Use_Tutorial
+💬 Support: @TeraShareLinks_support
 
-Once you're set up, just send me any post that has links, text, or images, and I’ll automatically replace your links with TeraShareLinks URLs! 💰
+Once you're set up, just send any post with links, and I’ll convert them into TeraShareLinks URLs! 🌐
 
-Excited to help you succeed with your links! 🚀`);
+Let’s get started! 🚀`);
 });
 
 // Command to add API token
