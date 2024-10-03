@@ -40,7 +40,7 @@ function isValidApiKey(apiKey) {
 // Function to shorten URL
 async function shortenUrl(longUrl, apiToken, customAlias = '') {
     const encodedUrl = encodeURIComponent(longUrl);
-    let apiUrl = `https://www.terasharelinks.xyz/api?api=${apiToken}&url=${encodedUrl}&format=text`;
+    let apiUrl = `https://www.terasharelinks.com/api?api=${apiToken}&url=${encodedUrl}&format=text`;
 
     if (customAlias) {
         apiUrl += `&alias=${customAlias}`;
@@ -96,13 +96,15 @@ bot.start((ctx) => {
 
 Easily convert links and start earning! 💸 Follow these simple steps:
 
-1️⃣ Go to your API page: 👉 https://terasharelinks.xyz/member/tools/api
+1️⃣ Sign-Up: 👉 terasharelinks.com
 
-2️⃣ Copy your API key. 🗝️
+2️⃣ Go to your API page: 👉 https://terasharelinks.com/member/tools/api
 
-3️⃣ Send the command: /api
+3️⃣ Copy your API key. 🗝️
 
-4️⃣ Paste your API key. 🔑
+4️⃣ Send the command:👉 /api
+
+5️⃣ Paste your API key. 🔑
 
 📽️ How to use: @Bot_Use_Tutorial
 
