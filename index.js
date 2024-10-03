@@ -96,13 +96,13 @@ bot.start((ctx) => {
 
 Easily convert links and start earning! 💸 Follow these simple steps:
 
-1️⃣ Sign-Up: 👉 terasharelinks.com
+1️⃣ Sign-Up: 👉 terasharelinks.com ✅
 
 2️⃣ Go to your API page: 👉 https://terasharelinks.com/member/tools/api
 
 3️⃣ Copy your API key. 🗝️
 
-4️⃣ Send the command:👉 /api
+4️⃣ Click this command: 👉 /api
 
 5️⃣ Paste your API key. 🔑
 
