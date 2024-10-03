@@ -40,7 +40,7 @@ function isValidApiKey(apiKey) {
 // Function to shorten URL
 async function shortenUrl(longUrl, apiToken, customAlias = '') {
     const encodedUrl = encodeURIComponent(longUrl);
-    let apiUrl = `https://www.terasharelinks.com/api?api=${apiToken}&url=${encodedUrl}&format=text`;
+    let apiUrl = `https://www.terasharelinks.xyz/api?api=${apiToken}&url=${encodedUrl}&format=text`;
 
     if (customAlias) {
         apiUrl += `&alias=${customAlias}`;
