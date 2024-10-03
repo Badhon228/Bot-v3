@@ -106,7 +106,7 @@ Easily convert links and start earning! 💸 Follow these simple steps:
 
 5️⃣ Paste your API key. 🔑
 
-📽️ How to use: @Bot_Use_Tutorial
+▶️ How to use: @Bot_Use_Tutorial
 
 💬 Support: @TeraShareLinks_support
 
