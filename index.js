@@ -1,4 +1,4 @@
-const { Telegraf } = require('telegraf');
+onst { Telegraf } = require('telegraf');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const fs = require('fs');
 const path = './data.json';
