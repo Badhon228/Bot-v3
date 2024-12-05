@@ -128,7 +128,6 @@ Easily convert links and start earning! 💸 Follow these simple steps:
 
 ▶️ How to use: @Bot_Use_Tutorial
 
-💬 Support: @TeraShareLinks_support
 
 Once you're set up, just send any post with links, and I’ll convert them into TeraShareLinks URLs! 🌐
 
