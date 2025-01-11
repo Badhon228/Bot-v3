@@ -126,8 +126,6 @@ Easily convert links and start earning! 💸 Follow these simple steps:
 
 5️⃣ Paste your API key. 🔑
 
-▶️ How to use: @Bot_Use_Tutorial
-
 
 Once you're set up, just send any post with links, and I’ll convert them into TeraShareLinks URLs! 🌐
 
