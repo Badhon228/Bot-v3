@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = './data.json';
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
-const groupChatId = '-1002220708172'; // Your main group chat ID
-const notificationGroupChatId = '-1002418911472'; // The group ID for notifications
+const groupChatId = '-1002259065736'; // Your main group chat ID
+const notificationGroupChatId = '-1002391897303'; // The group ID for notifications
 
 let userData = {};
 
