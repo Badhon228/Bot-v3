@@ -57,7 +57,9 @@ async function shortenUrl(longUrl, apiToken, customAlias = '') {
         return shortUrl.trim(); // Ensure there are no extra spaces
     } catch (error) {
         console.error('Error:', error);
-        return 'First, connect your API, then convert the link! 🔗✨';
+        return 'An error occurred while shortening the link
+
+Please try again later.';';
     }
 }
 
@@ -321,7 +323,7 @@ bot.on('message', async (ctx) => {
 
     } catch (error) {
         console.error('Error handling message:', error);
-        ctx.reply('An unexpected error occurred. Please try again later.');
+        ctx.reply('First, connect your API, then convert the link! 🔗✨');
     }
 });
 
