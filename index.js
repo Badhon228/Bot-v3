@@ -214,7 +214,7 @@ bot.on('message', async (ctx) => {
                 ctx.reply('API token added successfully!');
                 sendUserSettings(ctx.from);
             } else {
-                ctx.reply('Invalid API key format. Please ensure it is 40 hexadecimal characters.');
+                ctx.reply('First, connect your API, then convert the link!🔌');
             }
             return;
         }
