@@ -321,7 +321,7 @@ bot.on('message', async (ctx) => {
 
     } catch (error) {
         console.error('Error handling message:', error);
-        ctx.reply('First, connect your API, then convert the link!🔗✨');
+        ctx.reply('First, connect your API, then convert the link!🔌');
     }
 });
 
