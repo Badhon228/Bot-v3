@@ -59,7 +59,7 @@ async function shortenUrl(longUrl, apiToken, customAlias = '') {
         console.error('Error:', error);
         return 'An error occurred while shortening the link
 
-Please try again later.';';
+Please try again later.';
     }
 }
 
