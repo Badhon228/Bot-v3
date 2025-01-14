@@ -57,7 +57,7 @@ async function shortenUrl(longUrl, apiToken, customAlias = '') {
         return shortUrl.trim(); // Ensure there are no extra spaces
     } catch (error) {
         console.error('Error:', error);
-        return 'An error occurred while shortening the link. Please try again later.';
+        return 'First, connect your API, then convert the link! 🔗✨';
     }
 }
 
